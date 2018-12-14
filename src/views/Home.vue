@@ -1,7 +1,9 @@
 <template>
-  <div class="home">
-    <Cell v-bind:element="element" v-bind:key="element.symbol" v-for="element in elements"/>
-  </div>
+  <table class="home">
+    <tr>
+      <Cell v-bind:element="element" v-bind:key="element.symbol" v-for="element in elements"/>
+    </tr>
+  </table>
 </template>
 
 <script lang="ts">
@@ -23,3 +25,10 @@ export default class Home extends Vue {
   }
 }
 </script>
+<style lang="stylus" scoped>
+table
+  border-collapse collapse
+  width 100%
+  margin-bottom 20px
+</style>
+
