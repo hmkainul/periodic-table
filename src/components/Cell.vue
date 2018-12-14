@@ -1,5 +1,5 @@
 <template>
-  <td class="element" v-on:click="click" v-bind:class="element.type" v-bind:id="element.symbol">
+  <td class="element" v-on:click="click" v-on:mousedown="mousedown" v-bind:class="element.type" v-bind:id="element.symbol">
     <span class="number">{{ element.number }}<br></span>
     <span class="symbol">{{ element.symbol }}<br></span>
     <span class="name">{{ element.name }}<br></span>
@@ -14,9 +14,11 @@ import ChemicalElement from '@/ChemicalElement.ts';
 @Component
 export default class Cell extends Vue {
   @Prop() private element!: ChemicalElement;
-  click(event: Event) {
-    event.preventDefault();
+  private click(event: Event) {
     console.log(this.element.symbol);
+  }
+  private mousedown(event: Event) {
+    event.preventDefault();
   }
 }
 </script>
