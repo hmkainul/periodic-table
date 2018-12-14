@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Cell v-bind:element="element" />
+    <Cell v-bind:element="element" v-bind:key="element.symbol" v-for="element in elements"/>
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
   </div>
@@ -20,10 +20,10 @@ import json from '@/elements.json';
   },
 })
 export default class Home extends Vue {
-  private element: ChemicalElement;
+  private elements: ChemicalElement[];
   constructor() {
     super();
-    this.element = json[0];
+    this.elements = json;
   }
 }
 </script>
