@@ -3,4 +3,5 @@ export default interface ChemicalElement {
     symbol: string;
     name: string;
     weight: string;
+    type: string;
 }

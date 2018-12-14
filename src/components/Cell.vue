@@ -1,5 +1,5 @@
 <template>
-  <div class="element" v-bind:id="element.symbol">
+  <div class="element" v-bind:class="element.type" v-bind:id="element.symbol">
     <span class="number">{{ element.number }}<br></span>
     <span class="symbol">{{ element.symbol }}<br></span>
     <span class="name">{{ element.name }}<br></span>
@@ -20,7 +20,6 @@ export default class Cell extends Vue {
 <style scoped lang="stylus">
 .element
   text-align center
-  background-color #DA70D6
   border 1px solid
   padding-top 10px
   padding-bottom 10px
@@ -40,4 +39,37 @@ export default class Cell extends Vue {
 
 .symbol
   font-size 2.0em
+
+.otherNonMetal
+  background-color #DA70D6
+
+.otherMainGroupElement
+  background-color #B0C4DE
+
+.alkaliMetal
+  background-color #FFDEAD
+
+.alkaliEarthMetal
+  background-color #48D1CC
+
+.transitionMetal
+  background-color #F0E68C
+
+.metalloid
+  background-color #FFD700
+
+.halogen
+  background-color #90EE90
+
+.nobleGas
+  background-color #FFB6C1
+
+.lanthanoid
+  background-color #87CEFA
+
+.actinoid
+  background-color #F4A460
+
+.syntheticAndRadioactive
+  background-color #DCDCDC
 </style>
