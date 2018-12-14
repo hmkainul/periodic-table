@@ -1,10 +1,10 @@
 <template>
-  <div class="element" v-bind:class="element.type" v-bind:id="element.symbol">
+  <td class="element" v-on:click="click" v-bind:class="element.type" v-bind:id="element.symbol">
     <span class="number">{{ element.number }}<br></span>
     <span class="symbol">{{ element.symbol }}<br></span>
     <span class="name">{{ element.name }}<br></span>
     <span class="weight">{{ element.weight }}</span>
-  </div>
+  </td>
 </template>
 
 <script lang="ts">
@@ -14,6 +14,10 @@ import ChemicalElement from '@/ChemicalElement.ts';
 @Component
 export default class Cell extends Vue {
   @Prop() private element!: ChemicalElement;
+  click(event: Event) {
+    event.preventDefault();
+    console.log(this.element.symbol);
+  }
 }
 </script>
 
