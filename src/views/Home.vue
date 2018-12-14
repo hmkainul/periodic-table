@@ -11,13 +11,8 @@ import { Component, Vue } from 'vue-property-decorator';
 import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 import Cell from '@/components/Cell.vue';
 import ChemicalElement from '@/ChemicalElement';
+import json from '@/elements.json';
 
-const hydrogen = {
-  number: 1,
-  symbol: 'H',
-  name: 'Hydrogen',
-  weight: '1.008',
-};
 @Component({
   components: {
     HelloWorld,
@@ -28,7 +23,7 @@ export default class Home extends Vue {
   private element: ChemicalElement;
   constructor() {
     super();
-    this.element = hydrogen;
+    this.element = json[0];
   }
 }
 </script>
