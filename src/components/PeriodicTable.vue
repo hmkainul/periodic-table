@@ -8,14 +8,14 @@
         <template v-for="element in row">
           <Cell v-bind:element="element" v-bind:key="element.symbol"/>
           <template v-if="element.number === 1">
-            <td class="empty" v-bind:key="'emptyAfter'+element.number"></td>
-            <td class="empty" colspan="7" rowspan="3" v-bind:key="'emptyAfter'+element.number"></td>
-            <td class="empty" colspan="3" rowspan="3" v-bind:key="'emptyAfter'+element.number"></td>
-            <td class="empty" colspan="5" v-bind:key="'emptyAfter'+element.number"></td>
+            <td class="empty" v-bind:key="'empty1After'+element.number"></td>
+            <td class="empty" colspan="7" rowspan="3" v-bind:key="'empty2After'+element.number"></td>
+            <td class="empty" colspan="3" rowspan="3" v-bind:key="'empty3After'+element.number"></td>
+            <td class="empty" colspan="5" v-bind:key="'empty4After'+element.number"></td>
           </template>
         </template>
       </tr>
-      <tr v-if="index === 7 || index === 8" v-bind:key="'emptyAfter'+index">
+      <tr v-if="index === 6 || index === 7" v-bind:key="'emptyAfter'+index">
         <td colspan="18" class="empty"></td>
       </tr>
     </template>
@@ -38,6 +38,12 @@ export default class PeriodicTable extends Vue {
   constructor() {
     super();
     const left = new Set([1, 3, 11, 19, 37, 55, 87, 58, 90]);
+    function sortNumber(n: number): number {
+      if ((58 <= n && n <= 71) || (90 <= n && n <= 103)) {
+        n += 118;
+      }
+      return n;
+    }
     function splitToRows(total: ChemicalElement[][], current: ChemicalElement) {
       if (left.has(current.number)) {
         total.push([current]);
@@ -46,7 +52,9 @@ export default class PeriodicTable extends Vue {
       }
       return total;
     }
-    this.rows = json.reduce(splitToRows, []);
+    this.rows = json
+      .sort((a: ChemicalElement, b: ChemicalElement) => sortNumber(a.number) - sortNumber(b.number))
+      .reduce(splitToRows, []);
   }
 }
 </script>
